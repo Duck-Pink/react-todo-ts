@@ -1,0 +1,27 @@
+.todo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+li {
+    padding: 7px;
+    width: 12rem;
+    list-style: none;
+    background-color: white;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-check:hover {
+    background-color: aquamarine;
+}
+
+.btn-trash,
+.btn-check {
+    margin-left: 10px;
+}
+
+.btn-trash:hover {
+    background-color: red;
+}
