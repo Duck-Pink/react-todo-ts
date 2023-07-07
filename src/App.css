@@ -4,7 +4,7 @@
 }
 
 body {
-  background-color: rgb(210, 120, 56);
+  background-color: rgb(159, 251, 116);
   color: black;
   font-family: "Roboto", sans-serif;
 }
@@ -18,3 +18,17 @@ h1 {
   padding-top: 100px;
 }
 
+h2 {
+   font-size: 18px;
+}
+
+.form-deadline {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#deadline {
+  background: none;
+  font-size: 18px;
+}

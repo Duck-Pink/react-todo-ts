@@ -49,6 +49,7 @@ function TodoList() {
     } else {
       let todoLocal = JSON.parse(localStorage.getItem("todos"));
       setTodos(todoLocal);
+      console.log("setTodos(todoLocal)", setTodos(todoLocal));
     }
   };
 
@@ -82,9 +83,18 @@ function TodoList() {
         </div>
       </div>
       <ul className="list">
-        {filterTodos.map((todo) => {
+        {filterTodos.map((todo, index) => {
           const { text, id, completed } = todo;
-          return <Todo id={id} text={text} completed={completed} />;
+          return (
+            <Todo
+              key={index}
+              id={id}
+              text={text}
+              completed={completed}
+              todos={todos}
+              setTodos={setTodos}
+            />
+          );
         })}
       </ul>
     </>

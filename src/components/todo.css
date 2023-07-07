@@ -29,3 +29,7 @@ li {
 .btn-delete:hover {
     background-color: red;
 }
+
+.deadline {
+    color:red
+}
