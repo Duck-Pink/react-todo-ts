@@ -5,23 +5,27 @@
 }
 
 li {
-    padding: 7px;
+    padding: 8px;
     width: 12rem;
-    list-style: none;
     background-color: white;
     display: flex;
     justify-content: space-between;
 }
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+  }
 
-.btn-check:hover {
+ .btn-complete:hover {
     background-color: aquamarine;
-}
+} 
 
-.btn-trash,
-.btn-check {
+.btn-delete,
+.btn-complete {
     margin-left: 10px;
+    
 }
 
-.btn-trash:hover {
+.btn-delete:hover {
     background-color: red;
 }

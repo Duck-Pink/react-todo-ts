@@ -1,25 +1,66 @@
 import "./todo-list.css";
 import Todo from "./Todo";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ITodo } from "../interface/todo";
 
 function TodoList() {
   const [todos, setTodos] = useState<ITodo[]>([]);
+  const [filterTodos, setFilterTodos] = useState<ITodo[]>([]);
+  const [status, setStatus] = useState<string>("all");
   const [inputText, setInputText] = useState<string>("");
 
   const handleClick = () => {
     const newTodo: ITodo = {
-      id: Date.now(),
+      id: Math.random() * 100,
       text: inputText,
       completed: false,
     };
     setTodos([...todos, newTodo]);
   };
 
+  //select option
+  const filterHandler = () => {
+    switch (status) {
+      case "complete":
+        setFilterTodos(todos.filter((todo) => todo.completed === true));
+        break;
+      case "uncomplete":
+        setFilterTodos(todos.filter((todo) => todo.completed === false));
+        break;
+      default:
+        setFilterTodos(todos);
+        break;
+    }
+  };
+
+  //save
+  const saveLocalTodos = () => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  };
+
+  useEffect(() => {
+    filterHandler();
+    saveLocalTodos();
+  }, [todos, status]);
+
+  const getLocalTodos = () => {
+    if (localStorage.getItem("todos") === null) {
+      localStorage.getItem("todos", JSON.stringify([]));
+    } else {
+      let todoLocal = JSON.parse(localStorage.getItem("todos"));
+      setTodos(todoLocal);
+    }
+  };
+
+  useEffect(() => {
+    getLocalTodos();
+  }, []);
+
   return (
     <>
       <div className="todo-list">
         <input
+          value={inputText}
           type="text"
           placeholder="add todo..."
           className="todo-input"
@@ -29,7 +70,11 @@ function TodoList() {
           +
         </button>
         <div className="select">
-          <select name="todos" id="todo-title">
+          <select
+            name="todos"
+            id="todo-title"
+            onChange={(e) => setStatus(e.target.value)}
+          >
             <option value="all">All</option>
             <option value="complete">Complete</option>
             <option value="uncomplete">Uncomplete</option>
@@ -37,9 +82,8 @@ function TodoList() {
         </div>
       </div>
       <ul className="list">
-        {todos.map((todo) => {
+        {filterTodos.map((todo) => {
           const { text, id, completed } = todo;
-
           return <Todo id={id} text={text} completed={completed} />;
         })}
       </ul>
@@ -48,5 +92,3 @@ function TodoList() {
 }
 
 export default TodoList;
-
-// time add :{dayjs(new Date().getTime()).format("YYYY-MM-DD HH:mm:ss")}

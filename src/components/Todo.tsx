@@ -1,6 +1,8 @@
 import dayjs from "dayjs";
 import "./todo.css";
 import { useState } from "react";
+import check from "../assets/check.svg";
+import xmark from "../assets/xmark.svg";
 
 interface TodoProps {
   id: number;
@@ -9,36 +11,42 @@ interface TodoProps {
 }
 
 function Todo({ id, text, completed }: TodoProps) {
-  console.log("completed", completed);
   const [todos, setTodos] = useState<TodoProps[]>([]);
 
-  const handleToggle = () => {
+  // complete
+  const completeHandler = () => {
     setTodos(
-      todos.map((todo) => {
-        if (todo.id === id) {
-          return { ...todo, completed: !todo.completed };
+      todos.map((item) => {
+        if (item.id === id) {
+          return { ...item, completed: !item.completed };
         }
-        return todo;
+        return item;
       })
     );
   };
 
+  // delete
+  const deleteHandler = () => {
+    setTodos(todos.filter((el) => el.id !== id));
+    console.log("setTodos", setTodos);
+  };
+
   return (
     <div className="todo">
-      <li
-        key={id}
-        onClick={handleToggle}
-        style={{ textDecoration: completed ? "line-through" : "none" }}
-      >
+      <li key={id} className={`todo-tiem ${completed ? "completed" : ""}`}>
         {text}
-        <br />
+        {/* <br />
         <span>
           {"Time"}
           {dayjs(new Date().getTime()).format(" HH:mm:ss")}
-        </span>
+        </span> */}
       </li>
-      <button className="btn-check">Com</button>
-      <button className="btn-trash">Del</button>
+      <button className="btn-complete" onClick={completeHandler}>
+        <img src={check} alt="check" style={{ pointerEvents: "none" }} />
+      </button>
+      <button className="btn-delete" onClick={deleteHandler}>
+        <img src={xmark} alt="xamrk" style={{ pointerEvents: "none" }} />
+      </button>
     </div>
   );
 }
