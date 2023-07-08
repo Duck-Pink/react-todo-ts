@@ -3,6 +3,7 @@ import { SetStateAction } from "react";
 import check from "../assets/check.svg";
 import xmark from "../assets/xmark.svg";
 import { ITodo } from "../interface/todo";
+import dayjs from "dayjs";
 
 interface TodoProps {
   id: number;
@@ -33,17 +34,17 @@ function Todo({ id, text, completed, todos, setTodos }: TodoProps) {
 
   // check deadline
 
-  var checkDeadline = new Date().getTime() - new Date("2023-07-10").getTime();
+  const checkDeadline = Math.ceil(
+    (new Date("2023-07-10").getTime() - new Date().getTime()) /
+      (1000 * 3600 * 24)
+  );
 
   return (
-    <div className={`${checkDeadline === 1 ? "deadline" : "todo"}`}>
+    <div className={`${checkDeadline <= 1 ? "deadline" : "todo"}`}>
       <li key={id} className={`todo-tiem ${completed ? "completed" : ""}`}>
         {text}
-        {/* <br />
-        <span>
-          {"Time"}
-          {dayjs(new Date().getTime()).format(" HH:mm:ss")}
-        </span> */}
+        <p>{dayjs(new Date().getTime()).format("YYYY-MM-DD")}</p>
+        <span>deadline: {checkDeadline}</span>
       </li>
       <button className="btn-complete" onClick={completeHandler}>
         <img src={check} alt="check" style={{ pointerEvents: "none" }} />
