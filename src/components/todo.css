@@ -2,32 +2,33 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0.5rem;
+    background: white;
+    transition: all 1s ease;
+    color: black;
 }
 
-li {
+.todo-item {
     padding: 8px;
     width: 20rem;
-    background-color: white;
     display: flex;
     justify-content: space-between;
 }
 .completed {
     text-decoration: line-through;
     opacity: 0.5;
-  }
+}
 
- .btn-complete:hover {
+.btn-complete {
     background-color: aquamarine;
 } 
 
-.btn-delete,
-.btn-complete {
-    margin-left: 10px;
-    
+.btn-delete {
+    background-color: red;
 }
 
-.btn-delete:hover {
-    background-color: red;
+button {
+    cursor: pointer;
 }
 
 .deadline {
@@ -35,4 +36,7 @@ li {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin: 0.5rem;
+    background: white;
+    transition: all 1s ease;
 }

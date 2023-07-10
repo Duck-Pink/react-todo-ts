@@ -11,11 +11,12 @@ interface TodoProps {
   completed: boolean;
   todos: ITodo[];
   setTodos: React.Dispatch<SetStateAction<ITodo[]>>;
+  date: any;
 }
 
-function Todo({ id, text, completed, todos, setTodos }: TodoProps) {
+function Todo({ id, text, completed, todos, setTodos, date }: TodoProps) {
   // complete
-  const completeHandler = () => {
+  const handleComplete = () => {
     setTodos(
       todos.map((item) => {
         if (item.id === id) {
@@ -27,29 +28,27 @@ function Todo({ id, text, completed, todos, setTodos }: TodoProps) {
   };
 
   // delete
-  const deleteHandler = () => {
+  const handleDelete = () => {
     setTodos(todos.filter((el) => el.id !== id));
-    console.log("setTodos", setTodos);
   };
 
-  // check deadline
+  // deadline
 
-  const checkDeadline = Math.ceil(
-    (new Date("2023-07-10").getTime() - new Date().getTime()) /
-      (1000 * 3600 * 24)
+  const deadline = Math.ceil(
+    (new Date(date).getTime() - new Date().getTime()) / (1000 * 3600 * 24)
   );
 
   return (
-    <div className={`${checkDeadline <= 1 ? "deadline" : "todo"}`}>
-      <li key={id} className={`todo-tiem ${completed ? "completed" : ""}`}>
+    <div className={`${deadline <= 1 ? "deadline" : "todo"}`}>
+      <li key={id} className={`todo-item ${completed ? "completed" : ""}`}>
         {text}
         <p>{dayjs(new Date().getTime()).format("YYYY-MM-DD")}</p>
-        <span>deadline: {checkDeadline}</span>
+        <span>deadline: {deadline}</span>
       </li>
-      <button className="btn-complete" onClick={completeHandler}>
+      <button className="btn-complete" onClick={handleComplete}>
         <img src={check} alt="check" style={{ pointerEvents: "none" }} />
       </button>
-      <button className="btn-delete" onClick={deleteHandler}>
+      <button className="btn-delete" onClick={handleDelete}>
         <img src={xmark} alt="xamrk" style={{ pointerEvents: "none" }} />
       </button>
     </div>

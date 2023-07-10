@@ -4,6 +4,12 @@
     align-items: center;
 }
 
+.container {
+  display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 input, button {
     padding: 8px;
     font-size: 15px;
@@ -13,20 +19,13 @@ input, button {
 
 .todo-input {
     font-size: 20px;
-}
-
-.todo-input:focus {
-   outline: none;
+    width: 15rem;
 }
 
 .todo-button {
-    font-size: 20px;
-    background-color: #c8224c;
-
-}
-
-.todo-button:focus {
-  outline: none;
+  font-size: 20px;
+  background-color: #c8224c;
+  cursor: pointer;
 }
 
 button:hover {
@@ -34,6 +33,7 @@ button:hover {
 }
 
 .list {
+  min-width: 40%;
   list-style: none;
 }
 
