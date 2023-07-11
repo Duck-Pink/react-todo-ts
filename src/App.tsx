@@ -1,10 +1,10 @@
 import TodoList from "./components/TodoList";
 import "./App.css";
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 
 function App() {
   const [date, setDate] = useState<string>("");
-  const handleChange = (e: any) => {
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
   };
   return (

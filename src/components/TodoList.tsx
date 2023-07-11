@@ -1,9 +1,13 @@
 import "./todo-list.css";
 import Todo from "./Todo";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { ITodo } from "../interface/todo";
 
-function TodoList({ date }: any) {
+interface TodoListProps {
+  date: string;
+}
+
+function TodoList({ date }: TodoListProps) {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [inputText, setInputText] = useState<string>("");
 
@@ -20,7 +24,7 @@ function TodoList({ date }: any) {
   };
 
   //select option
-  const handleFilter = (e: any) => {
+  const handleFilter = (e: ChangeEvent<HTMLSelectElement>) => {
     const { value } = e.target;
     switch (value) {
       case "complete":
@@ -61,7 +65,8 @@ function TodoList({ date }: any) {
     getLocalTodos();
   }, []);
 
-  const handleInputText = (e: any) => setInputText(e.currentTarget.value);
+  const handleInputText = (e: ChangeEvent<HTMLInputElement>) =>
+    setInputText(e.currentTarget.value);
 
   return (
     <>
@@ -77,7 +82,7 @@ function TodoList({ date }: any) {
           +
         </button>
         <div className="select">
-          <select name="todos" id="todo-title" onChange={handleFilter}>
+          <select name="todos" onChange={handleFilter}>
             <option value="all">All</option>
             <option value="complete">Complete</option>
             <option value="uncomplete">Uncomplete</option>

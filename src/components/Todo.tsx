@@ -11,7 +11,7 @@ interface TodoProps {
   completed: boolean;
   todos: ITodo[];
   setTodos: React.Dispatch<SetStateAction<ITodo[]>>;
-  date: any;
+  date: string;
 }
 
 function Todo({ id, text, completed, todos, setTodos, date }: TodoProps) {
