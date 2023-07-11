@@ -1,15 +1,20 @@
 import "./todo-list.css";
 import Todo from "./Todo";
-import { useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { ITodo } from "../interface/todo";
 
-function TodoList() {
+interface TodoListProps {
+  date: string;
+}
+
+function TodoList({ date }: TodoListProps) {
   const [todos, setTodos] = useState<ITodo[]>([]);
-  const [filterTodos, setFilterTodos] = useState<ITodo[]>([]);
-  const [status, setStatus] = useState<string>("all");
   const [inputText, setInputText] = useState<string>("");
 
   const handleClick = () => {
+    if (!inputText) {
+      return;
+    }
     const newTodo: ITodo = {
       id: Math.random() * 100,
       text: inputText,
@@ -19,16 +24,17 @@ function TodoList() {
   };
 
   //select option
-  const filterHandler = () => {
-    switch (status) {
+  const handleFilter = (e: ChangeEvent<HTMLSelectElement>) => {
+    const { value } = e.target;
+    switch (value) {
       case "complete":
-        setFilterTodos(todos.filter((todo) => todo.completed === true));
+        setTodos(todos.filter((todo) => todo.completed === true));
         break;
       case "uncomplete":
-        setFilterTodos(todos.filter((todo) => todo.completed === false));
+        setTodos(todos.filter((todo) => todo.completed === false));
         break;
       default:
-        setFilterTodos(todos);
+        setTodos(todos);
         break;
     }
   };
@@ -39,23 +45,28 @@ function TodoList() {
   };
 
   useEffect(() => {
-    filterHandler();
     saveLocalTodos();
-  }, [todos, status]);
+  }, []);
 
   const getLocalTodos = () => {
     if (localStorage.getItem("todos") === null) {
-      localStorage.getItem("todos", JSON.stringify([]));
+      localStorage.setItem("todos", JSON.stringify([]));
     } else {
-      let todoLocal = JSON.parse(localStorage.getItem("todos"));
+      const localStorageTodos = localStorage.getItem("todos");
+      if (localStorageTodos === null) {
+        return;
+      }
+      let todoLocal = JSON.parse(localStorageTodos);
       setTodos(todoLocal);
-      console.log("setTodos(todoLocal)", setTodos(todoLocal));
     }
   };
 
   useEffect(() => {
     getLocalTodos();
   }, []);
+
+  const handleInputText = (e: ChangeEvent<HTMLInputElement>) =>
+    setInputText(e.currentTarget.value);
 
   return (
     <>
@@ -65,38 +76,37 @@ function TodoList() {
           type="text"
           placeholder="add todo..."
           className="todo-input"
-          onChange={(e) => setInputText(e.currentTarget.value)}
+          onChange={handleInputText}
         />
         <button className="todo-button" type="submit" onClick={handleClick}>
           +
         </button>
         <div className="select">
-          <select
-            name="todos"
-            id="todo-title"
-            onChange={(e) => setStatus(e.target.value)}
-          >
+          <select name="todos" onChange={handleFilter}>
             <option value="all">All</option>
             <option value="complete">Complete</option>
             <option value="uncomplete">Uncomplete</option>
           </select>
         </div>
       </div>
-      <ul className="list">
-        {filterTodos.map((todo, index) => {
-          const { text, id, completed } = todo;
-          return (
-            <Todo
-              key={index}
-              id={id}
-              text={text}
-              completed={completed}
-              todos={todos}
-              setTodos={setTodos}
-            />
-          );
-        })}
-      </ul>
+      <div className="container">
+        <ul className="list">
+          {todos.map((todo, index) => {
+            const { text, id, completed } = todo;
+            return (
+              <Todo
+                key={index}
+                id={id}
+                text={text}
+                completed={completed}
+                todos={todos}
+                setTodos={setTodos}
+                date={date}
+              />
+            );
+          })}
+        </ul>
+      </div>
     </>
   );
 }
