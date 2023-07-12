@@ -1,15 +1,17 @@
 import "./todo-list.css";
 import Todo from "./Todo";
 import { ChangeEvent, useEffect, useState } from "react";
-import { ITodo } from "../interface/todo";
+import { ITodo } from "../../interface/todo";
+import Nav from "../Nav/Nav";
 
-interface TodoListProps {
-  date: string;
-}
-
-function TodoList({ date }: TodoListProps) {
+function TodoList() {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [inputText, setInputText] = useState<string>("");
+
+  const [date, setDate] = useState<string>("");
+  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setDate(e.target.value);
+  };
 
   const handleClick = () => {
     if (!inputText) {
@@ -71,22 +73,39 @@ function TodoList({ date }: TodoListProps) {
   return (
     <>
       <div className="todo-list">
-        <input
-          value={inputText}
-          type="text"
-          placeholder="add todo..."
-          className="todo-input"
-          onChange={handleInputText}
-        />
-        <button className="todo-button" type="submit" onClick={handleClick}>
-          +
-        </button>
-        <div className="select">
-          <select name="todos" onChange={handleFilter}>
-            <option value="all">All</option>
-            <option value="complete">Complete</option>
-            <option value="uncomplete">Uncomplete</option>
-          </select>
+        <Nav />
+        <div className="header">
+          <h1 className="todo-title"> Todo List </h1>
+          <form className="form-deadline">
+            <h2>deadline:</h2>
+            <input
+              type="date"
+              className="todo-deadline"
+              name="deadline"
+              onChange={handleChange}
+            />
+          </form>
+        </div>
+        <div className="banner">
+          <div className="todo-content">
+            <input
+              value={inputText}
+              type="text"
+              placeholder="add todo..."
+              className="todo-input"
+              onChange={handleInputText}
+            />
+            <button className="todo-button" type="submit" onClick={handleClick}>
+              +
+            </button>
+          </div>
+          <div className="select">
+            <select name="status" onChange={handleFilter}>
+              <option value="all">All</option>
+              <option value="complete">Complete</option>
+              <option value="uncomplete">Uncomplete</option>
+            </select>
+          </div>
         </div>
       </div>
       <div className="container">

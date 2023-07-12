@@ -6,6 +6,7 @@
     background: white;
     transition: all 1s ease;
     color: black;
+    border-radius: 10px;
 }
 
 .todo-item {
@@ -19,12 +20,17 @@
     opacity: 0.5;
 }
 
-.btn-complete {
-    background-color: aquamarine;
+.btn-complete:hover {
+    background-color: rgb(51, 242, 233);
 } 
 
+.btn-delete:hover {
+    background-color: rgb(239, 78, 78);
+}
+
 .btn-delete {
-    background-color: red;
+    border-radius: 0 10px 10px 0;
+
 }
 
 button {
@@ -39,4 +45,5 @@ button {
     margin: 0.5rem;
     background: white;
     transition: all 1s ease;
+    border-radius: 10px;
 }

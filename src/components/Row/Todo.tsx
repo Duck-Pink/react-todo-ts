@@ -1,8 +1,8 @@
 import "./todo.css";
 import { SetStateAction } from "react";
-import check from "../assets/check.svg";
-import xmark from "../assets/xmark.svg";
-import { ITodo } from "../interface/todo";
+import check from "../../assets/check.svg";
+import xmark from "../../assets/xmark.svg";
+import { ITodo } from "../../interface/todo";
 import dayjs from "dayjs";
 
 interface TodoProps {
