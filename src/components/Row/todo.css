@@ -30,8 +30,19 @@
 
 .btn-delete {
     border-radius: 0 10px 10px 0;
-
+    padding: 8px;
+    font-size: 20px;
+    border: none;
+    background: white;
 }
+
+.btn-complete {
+    padding: 8px;
+    font-size: 20px;
+    border: none;
+    background: white;
+}
+
 
 button {
     cursor: pointer;

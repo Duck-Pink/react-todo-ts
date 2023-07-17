@@ -7,7 +7,6 @@ import Nav from "../Nav/Nav";
 function TodoList() {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [inputText, setInputText] = useState<string>("");
-
   const [date, setDate] = useState<string>("");
   const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
@@ -83,6 +82,7 @@ function TodoList() {
               className="todo-deadline"
               name="deadline"
               onChange={handleChange}
+              min={"2023-07-16"}
             />
           </form>
         </div>
@@ -94,6 +94,7 @@ function TodoList() {
               placeholder="add todo..."
               className="todo-input"
               onChange={handleInputText}
+              autoFocus
             />
             <button className="todo-button" type="submit" onClick={handleClick}>
               +

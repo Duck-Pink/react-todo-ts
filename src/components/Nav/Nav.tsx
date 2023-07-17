@@ -11,7 +11,7 @@ function Nav() {
         src={logo}
         alt="logo"
         className="nav-logo"
-        onClick={() => navigate("/")}
+        onClick={() => navigate("/home")}
       />
       <img
         src={user}

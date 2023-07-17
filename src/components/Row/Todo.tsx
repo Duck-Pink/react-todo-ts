@@ -1,7 +1,6 @@
 import "./todo.css";
 import { SetStateAction } from "react";
-import check from "../../assets/check.svg";
-import xmark from "../../assets/xmark.svg";
+import { Check, Xmark } from "../icons";
 import { ITodo } from "../../interface/todo";
 import dayjs from "dayjs";
 
@@ -46,10 +45,10 @@ function Todo({ id, text, completed, todos, setTodos, date }: TodoProps) {
         <span>deadline: {deadline}</span>
       </li>
       <button className="btn-complete" onClick={handleComplete}>
-        <img src={check} alt="check" style={{ pointerEvents: "none" }} />
+        <Check style={{ pointerEvents: "none" }} />
       </button>
       <button className="btn-delete" onClick={handleDelete}>
-        <img src={xmark} alt="xamrk" style={{ pointerEvents: "none" }} />
+        <Xmark style={{ pointerEvents: "none" }} />
       </button>
     </div>
   );
