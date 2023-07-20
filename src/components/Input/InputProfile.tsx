@@ -1,18 +1,11 @@
-const InputProfile = () => {
-  return (
-    <div className="input">
-      <input
-        style={{
-          width: "100%",
-          border: "none",
-          borderBottom: " 1px solid black",
-          background: "none",
-          outline: "none",
-          fontSize: "18px",
-        }}
-      />
-    </div>
-  );
-};
+import { ComponentPropsWithoutRef } from "react";
+import "./InputProfile.css";
 
+interface InputProps extends ComponentPropsWithoutRef<"input"> {
+  className?: string;
+}
+
+const InputProfile = ({ type }: InputProps) => {
+  return <input className="input" type={type}></input>;
+};
 export default InputProfile;
