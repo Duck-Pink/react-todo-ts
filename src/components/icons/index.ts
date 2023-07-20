@@ -1,3 +1,3 @@
-export {default as Pen} from "./Pen"
-export {default as Check } from "./Check"
-export {default as Xmark } from "./Xmark"
+export {default as PenIcon} from "./PenIcon"
+export {default as CheckIcon } from "./CheckIcon"
+export {default as XmarkIcon } from "./XmarkIcon"

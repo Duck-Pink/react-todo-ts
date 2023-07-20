@@ -1,6 +1,6 @@
 import "./todo.css";
 import { SetStateAction } from "react";
-import { Check, Xmark } from "../icons";
+import { CheckIcon, XmarkIcon } from "../icons";
 import { ITodo } from "../../interface/todo";
 import dayjs from "dayjs";
 
@@ -33,9 +33,13 @@ function Todo({ id, text, completed, todos, setTodos, date }: TodoProps) {
 
   // deadline
 
-  const deadline = Math.ceil(
+  const deadline: number = Math.ceil(
     (new Date(date).getTime() - new Date().getTime()) / (1000 * 3600 * 24)
   );
+  if (!deadline) {
+    alert("Please choose deadline ");
+    return;
+  }
 
   return (
     <div className={`${deadline <= 1 ? "deadline" : "todo"}`}>
@@ -45,10 +49,10 @@ function Todo({ id, text, completed, todos, setTodos, date }: TodoProps) {
         <span>deadline: {deadline}</span>
       </li>
       <button className="btn-complete" onClick={handleComplete}>
-        <Check style={{ pointerEvents: "none" }} />
+        <CheckIcon style={{ pointerEvents: "none" }} />
       </button>
       <button className="btn-delete" onClick={handleDelete}>
-        <Xmark style={{ pointerEvents: "none" }} />
+        <XmarkIcon style={{ pointerEvents: "none" }} />
       </button>
     </div>
   );

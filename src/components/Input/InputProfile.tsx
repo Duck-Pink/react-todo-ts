@@ -1,12 +1,11 @@
-const InputAddress = () => {
+const InputProfile = () => {
   return (
-    <div className="input-address">
+    <div className="input">
       <input
-        type="text"
         style={{
           width: "100%",
           border: "none",
-          borderBottom: "1px solid gray",
+          borderBottom: " 1px solid black",
           background: "none",
           outline: "none",
           fontSize: "18px",
@@ -16,4 +15,4 @@ const InputAddress = () => {
   );
 };
 
-export default InputAddress;
+export default InputProfile;

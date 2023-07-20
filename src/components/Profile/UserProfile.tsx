@@ -1,11 +1,8 @@
 import { useEffect, useState } from "react";
-import { Pen } from "../icons";
+import { PenIcon } from "../icons";
 import "./UserProfile.css";
 import { SubmitHandler, useForm } from "react-hook-form";
-import InputName from "../icons/InputName";
-import InputEmail from "../icons/InputEmail";
-import InputPhone from "../icons/InputPhone";
-import InputAddress from "../icons/InputAddress";
+import { InputProfile } from "../Input";
 
 interface UserProps {
   name: string;
@@ -51,34 +48,42 @@ function UserProfile() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="user-profile">
           <label>Full Name: </label>
-          <InputName />
-          <Pen />
+          <InputProfile />
+          <PenIcon />
         </div>
         <div className="user-profile">
           <label>Email: </label>
-          <InputEmail />
-          <Pen />
+          <InputProfile />
+          <PenIcon />
         </div>
         <div className="user-profile">
-          <label htmlFor="male">Male</label>:
-          <input type="radio" id="male" name="sex" value="" />
-          <label htmlFor="female">Female</label>:
-          <input type="radio" id="female" name="sex" value="" />
+          <p>Gender :</p>
+          <span>
+            <input type="radio" id="male" name="sex" value="" />
+            <label htmlFor="male">Male</label>
+          </span>
+          <span>
+            <input type="radio" id="female" name="sex" value="" />
+            <label htmlFor="female">Female</label>
+          </span>
         </div>
         <div className="user-profile">
           <label>Birthday: </label>
-          <input type="date" style={{ background: "none", border: "none" }} />
-          <Pen />
+          <input
+            type="date"
+            style={{ background: "none", border: "none", fontSize: "18px" }}
+          />
+          <PenIcon />
         </div>
         <div className="user-profile">
           <label>Phone Number: </label>
-          <InputPhone />
-          <Pen />
+          <InputProfile />
+          <PenIcon />
         </div>
         <div className="user-profile">
           <label>Address: </label>
-          <InputAddress />
-          <Pen />
+          <InputProfile />
+          <PenIcon />
         </div>
         <button className="user-button" type="submit">
           Save

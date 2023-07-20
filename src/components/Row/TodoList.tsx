@@ -8,12 +8,13 @@ function TodoList() {
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [inputText, setInputText] = useState<string>("");
   const [date, setDate] = useState<string>("");
-  const handleChange = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleChangeDate = (e: ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
   };
 
   const handleClick = () => {
     if (!inputText) {
+      alert("Please enter text ");
       return;
     }
     const newTodo: ITodo = {
@@ -81,8 +82,8 @@ function TodoList() {
               type="date"
               className="todo-deadline"
               name="deadline"
-              onChange={handleChange}
-              min={"2023-07-16"}
+              onChange={handleChangeDate}
+              min={"2023-07-20"}
             />
           </form>
         </div>
