@@ -38,12 +38,17 @@
     font-size: 1rem;
     color: black;
     border-radius: 5px;
-    background-color: #efa940;
+    background-color: #ffd179;
     font-weight: 600;
     border: none;
     cursor: pointer;
     margin-top: 20px;
     font-size: 20px;
+}
+
+.signup > form > button:hover{
+    background-color: #ffb86c;
+    color:white
 }
 
 .signup-white {

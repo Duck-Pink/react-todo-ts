@@ -34,6 +34,8 @@
     font-size: 20px;
     border: none;
     background: white;
+    display: flex;
+    align-items: center;
 }
 
 .btn-complete {
@@ -41,6 +43,8 @@
     font-size: 20px;
     border: none;
     background: white;
+    display: flex;
+    align-items: center;
 }
 
 

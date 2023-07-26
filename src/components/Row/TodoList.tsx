@@ -1,20 +1,25 @@
-import "./todo-list.css";
+import "./TodoList.css";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import Todo from "./Todo";
-import { ChangeEvent, useEffect, useState } from "react";
 import { ITodo } from "../../interface/todo";
 import Nav from "../Nav/Nav";
 
 function TodoList() {
+  const inputRef = useRef<HTMLInputElement>(null);
   const [todos, setTodos] = useState<ITodo[]>([]);
   const [inputText, setInputText] = useState<string>("");
+  const [isError, setIsError] = useState<boolean>(false);
+  const [isDeadline, setIsDeadline] = useState<boolean>(false);
   const [date, setDate] = useState<string>("");
+
   const handleChangeDate = (e: ChangeEvent<HTMLInputElement>) => {
     setDate(e.target.value);
+    setIsDeadline(false);
   };
 
   const handleClick = () => {
     if (!inputText) {
-      alert("Please enter text ");
+      setIsError(true);
       return;
     }
     const newTodo: ITodo = {
@@ -23,6 +28,8 @@ function TodoList() {
       completed: false,
     };
     setTodos([...todos, newTodo]);
+    setInputText("");
+    inputRef.current?.focus();
   };
 
   //select option
@@ -67,8 +74,10 @@ function TodoList() {
     getLocalTodos();
   }, []);
 
-  const handleInputText = (e: ChangeEvent<HTMLInputElement>) =>
+  const handleInputText = (e: ChangeEvent<HTMLInputElement>) => {
+    setIsError(false);
     setInputText(e.currentTarget.value);
+  };
 
   return (
     <>
@@ -77,32 +86,43 @@ function TodoList() {
         <div className="header">
           <h1 className="todo-title"> Todo List </h1>
           <form className="form-deadline">
-            <h2>deadline:</h2>
+            <h2>Deadline :</h2>
             <input
               type="date"
               className="todo-deadline"
               name="deadline"
               onChange={handleChangeDate}
-              min={"2023-07-20"}
+              min={"2023-07-26"}
             />
           </form>
+          {isDeadline && (
+            <p className="todo-deadline-error">Choose deadline to create</p>
+          )}
         </div>
         <div className="banner">
           <div className="todo-content">
             <input
+              ref={inputRef}
               value={inputText}
               type="text"
-              placeholder="add todo..."
+              placeholder="Add todo..."
               className="todo-input"
               onChange={handleInputText}
-              autoFocus
+              maxLength={3}
             />
             <button className="todo-button" type="submit" onClick={handleClick}>
               +
             </button>
+            {isError && (
+              <p className="todo-input-error">This field is required!</p>
+            )}
           </div>
-          <div className="select">
-            <select name="status" onChange={handleFilter}>
+          <div className="todo-select">
+            <select
+              name="status"
+              onChange={handleFilter}
+              className="select-status"
+            >
               <option value="all">All</option>
               <option value="complete">Complete</option>
               <option value="uncomplete">Uncomplete</option>
@@ -123,6 +143,7 @@ function TodoList() {
                 todos={todos}
                 setTodos={setTodos}
                 date={date}
+                setIsDeadline={setIsDeadline}
               />
             );
           })}

@@ -22,3 +22,30 @@
     object-fit: contain;
     cursor: pointer;
 }
+
+.nav-logo-user{
+    position: absolute; 
+    right: 40px; 
+    top: 60px;
+    list-style: none;
+    padding: 5px;
+    background: rgba(246, 235, 218, 0.85);
+    border-radius: 10px;
+}
+
+li > button {
+    width: 70px;
+    background-color: #ffd179;
+    border: none;
+    padding: 5px;
+    border-radius: 10px;
+}
+
+.nav-button-profile {
+    margin-bottom: 5px;
+}
+
+li > button:hover {
+    background-color: #ffb86c;
+    color:white
+}

@@ -1,1 +1,1 @@
-export {default as InputProfile} from "./InputProfile"
+export {default as Input} from "./Input"

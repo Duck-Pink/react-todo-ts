@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { PenIcon } from "../icons";
 import "./UserProfile.css";
 import { SubmitHandler, useForm } from "react-hook-form";
-import { InputProfile } from "../Input";
+import { Input } from "../Input";
 
 interface UserProps {
   name: string;
@@ -12,8 +11,16 @@ interface UserProps {
   birthday: Date;
 }
 
+const initalUser: UserProps = {
+  name: "Bui Quang Huong",
+  email: "buiquanghuong01@gmail.com",
+  phone: 999999999,
+  address: "Ha Noi",
+  birthday: new Date(2001, 1, 1),
+};
+
 function UserProfile() {
-  const [user, setUser] = useState<UserProps[]>([]);
+  const [user, setUser] = useState<UserProps[]>([initalUser]);
   const { handleSubmit } = useForm<UserProps>();
   const onSubmit: SubmitHandler<UserProps> = (data: UserProps) =>
     console.log(data);
@@ -48,42 +55,61 @@ function UserProfile() {
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="user-profile">
           <label>Full Name: </label>
-          <InputProfile />
-          <PenIcon />
+          <Input
+            className="user-input input-name"
+            type="text"
+            value={initalUser.name}
+          />
         </div>
         <div className="user-profile">
           <label>Email: </label>
-          <InputProfile />
-          <PenIcon />
+          <Input
+            className="user-input input-email"
+            type="text"
+            value={initalUser.email}
+          />
         </div>
         <div className="user-profile">
           <p>Gender :</p>
           <span>
-            <input type="radio" id="male" name="sex" value="" />
+            <Input
+              className="input-radio"
+              type="radio"
+              id="male"
+              name="sex"
+              checked
+            />
             <label htmlFor="male">Male</label>
           </span>
           <span>
-            <input type="radio" id="female" name="sex" value="" />
+            <Input
+              className="input-radio"
+              type="radio"
+              id="female"
+              name="sex"
+            />
             <label htmlFor="female">Female</label>
           </span>
         </div>
         <div className="user-profile">
           <label>Birthday: </label>
-          <input
-            type="date"
-            style={{ background: "none", border: "none", fontSize: "18px" }}
-          />
-          <PenIcon />
+          <Input type="date" className="input-birthday" />
         </div>
         <div className="user-profile">
           <label>Phone Number: </label>
-          <InputProfile />
-          <PenIcon />
+          <Input
+            className="user-input input-phone"
+            type="number"
+            value={initalUser.phone}
+          />
         </div>
         <div className="user-profile">
           <label>Address: </label>
-          <InputProfile />
-          <PenIcon />
+          <Input
+            className="user-input input-address"
+            type="text"
+            value={initalUser.address}
+          />
         </div>
         <button className="user-button" type="submit">
           Save

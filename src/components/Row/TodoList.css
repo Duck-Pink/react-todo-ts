@@ -1,14 +1,13 @@
 .banner {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
 }
 
 
 .container {
-  position: fixed;
+  position: absolute;
   left: 35%;
-  top: 26.75%;
   background: rgba(246, 235, 218, 0.85);
   border-radius: 10px;
   padding: 5px;
@@ -19,7 +18,7 @@
     font-size: 20px;
     width: 15rem;
     border-radius: 10px 0 0 10px;
-    padding: 8px;
+    padding: 12px;
     font-size: 20px;
     border: none;
     background: white;
@@ -27,15 +26,18 @@
 
 .todo-button {
   font-size: 20px;
-  background-color: #efa940;
+  background-color: #ffd179;
   cursor: pointer;
   border-radius: 0 10px 10px 0;
-  padding: 8px;
+  padding: 12px;
   font-size: 20px;
   border: none;
 }
 
-
+.todo-button:hover{
+  background-color: #ffb86c;
+    color:white
+}
 
 .list {
   list-style: none;
@@ -43,44 +45,47 @@
   overflow: auto;
 }
 
+.todo-deadline-error{
+  text-align: center;
+    padding-top: 5px;
+    font-size: 20px;
+    color: #ff3e00;
+}
+
 
   /*CUSTOM SELECTOR */
 select {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -ms-appearance: none;
+  width: 9rem;
+  padding: 16px;
   appearance: none;
   outline: 0;
   box-shadow: none;
   border: 0 !important;
   background-image: none;
+  cursor: pointer;
 }
 
 /* Custom Select */
-.select {
+.todo-select {
   margin: 1rem;
   position: relative;
   overflow: hidden;
-  cursor: pointer;
-  width: 7rem;
-  padding: 12px;
   border-radius: 10px;
   background: white;
 }
 
 /* Arrow */
-.select::after {
+.todo-select::after {
   content: "\25BC";
   position: absolute;
   top: 0;
   right: 0;
-  padding: 12px;
-  cursor: pointer;
+  padding: 15px;
   pointer-events: none;
 }
 /* Transition */
 
-.select:hover::after {
+.todo-select:hover::after {
   transform: scale(0.75);
 }
 
@@ -90,22 +95,35 @@ select {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Fasthand', cursive;
 }
 
 .form-deadline {
   display: flex;
   align-items: center;
-  padding-left: 20px;
   justify-content: center;
 }
 
-.todo-deadline {
-  background: none;
-  font-size: 18px;
-  border: none;
+.form-deadline > h2 {
+    padding: 8.3px;
+    background: white;
+    border-radius: 10px 0 0 10px;
 }
 
-.todo-content {
-  padding-left: 20px;
+.todo-deadline {
+  background: white;
+  font-size: 20px;
+  border: none;
+  padding: 10px;
+  border-radius: 0 10px 10px 0;
+  cursor: pointer;
+}
+
+.todo-content{
+  position: relative;
+}
+
+.todo-input-error {
+  position: absolute;
+  color: red;
+  padding: 5px;
 }

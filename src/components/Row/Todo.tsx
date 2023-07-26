@@ -11,9 +11,18 @@ interface TodoProps {
   todos: ITodo[];
   setTodos: React.Dispatch<SetStateAction<ITodo[]>>;
   date: string;
+  setIsDeadline: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-function Todo({ id, text, completed, todos, setTodos, date }: TodoProps) {
+function Todo({
+  id,
+  text,
+  completed,
+  todos,
+  setTodos,
+  date,
+  setIsDeadline,
+}: TodoProps) {
   // complete
   const handleComplete = () => {
     setTodos(
@@ -37,16 +46,16 @@ function Todo({ id, text, completed, todos, setTodos, date }: TodoProps) {
     (new Date(date).getTime() - new Date().getTime()) / (1000 * 3600 * 24)
   );
   if (!deadline) {
-    alert("Please choose deadline ");
+    setIsDeadline(true);
     return;
   }
 
   return (
     <div className={`${deadline <= 1 ? "deadline" : "todo"}`}>
       <li key={id} className={`todo-item ${completed ? "completed" : ""}`}>
-        {text}
-        <p>{dayjs(new Date().getTime()).format("YYYY-MM-DD")}</p>
-        <span>deadline: {deadline}</span>
+        <label>Todo: {text} </label>
+        <label>Date: {dayjs(new Date().getTime()).format("YYYY-MM-DD")}</label>
+        <label>Deadline: {deadline} day</label>
       </li>
       <button className="btn-complete" onClick={handleComplete}>
         <CheckIcon style={{ pointerEvents: "none" }} />
