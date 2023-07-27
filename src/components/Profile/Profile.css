@@ -1,27 +1,17 @@
 .profile-body {
     display: flex;
     flex-direction: column;
-    width: 40%;
     margin-left: auto;
     margin-right: auto;
-    margin-top: 8%;
-    max-width: 800px;
+    margin-top: 6%;
+    max-width: 600px;
     background-color: rgba(246, 235, 218, 0.85);
-    padding: 20px;  
+    padding: 40px 20px;  
     border-radius: 10px;
 }
 
-.profile-info {
-    display: flex;
-}
-
-.profile-details {
-    margin-left: 25px;
-    flex: 1;
-}
-
 .profile-body-title > h1 {
-    font-size: 60px;
+    font-size: 40px;
     font-weight: 400;
 }
 
@@ -31,6 +21,7 @@
     align-items: center;
     border-bottom: 1px solid #282c2d;
     margin-bottom: 10px;
+    padding: 10px;
 }
 
 .profile-button-edit {
@@ -45,57 +36,4 @@
     background-color: #ffb86c;
 }
 
-.profile-home {
-    padding: 10px 20px;
-    font-size: 1rem;
-    margin-top: 5%;
-    width: 100%;
-    color: black;
-    background-color: #ffd179;
-    font-weight: 600;
-    border: none;
-    cursor: pointer;
-    border-radius: 10px;
-}
 
-.profile-info > img {
-    height: 100px;
-}
-
-.profile-button {
-    bottom: 0;
-}
-
-.profile-button > button:hover {
-    background-color: #ffb86c;
-    color:white
-}
-
-.profile-avatar {
-    width: 100px;
-}
-
-.avatar {
-    width: 100px;
-    height: 100px;
-    padding-left: 5px;
-}
-
-.change-avatar {
-    visibility: hidden;
-}
-
-.profile-button-change {
-    display: block;
-    width: 100px;
-    font-size: 15px;
-    padding: 5px;
-    background: #ffd179;
-    cursor: pointer;
-    border-radius: 10px;
-}
-
-.profile-button-change:hover{
-    background-color: #ffb86c;
-    color:white
-}
