@@ -1,37 +1,9 @@
 import { ComponentPropsWithoutRef } from "react";
+import "./Input.css";
 
-interface InputProps extends ComponentPropsWithoutRef<"input"> {
-  className?: string;
-  type?: string;
-  style?: React.CSSProperties;
-  id?: string;
-  value?: string | number;
-  name?: string;
-  onChange?: React.ChangeEventHandler<HTMLInputElement> | undefined;
-  checked?: boolean;
-}
+interface InputProps extends ComponentPropsWithoutRef<"input"> {}
 
-const InputProfile = ({
-  type,
-  className,
-  style,
-  id,
-  name,
-  value,
-  onChange,
-  checked,
-}: InputProps) => {
-  return (
-    <input
-      className={className}
-      type={type}
-      style={style}
-      id={id}
-      name={name}
-      value={value}
-      onChange={onChange}
-      checked={checked}
-    />
-  );
+const Input = ({ ...props }: InputProps) => {
+  return <input {...props} />;
 };
-export default InputProfile;
+export default Input;
