@@ -2,33 +2,38 @@ import "./TodoList.css";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import Todo from "./Todo";
 import { ITodo } from "../../interface/todo";
-import Nav from "../Nav/Nav";
 
 function TodoList() {
   const inputRef = useRef<HTMLInputElement>(null);
   const [todos, setTodos] = useState<ITodo[]>([]);
-  const [inputText, setInputText] = useState<string>("");
+  const [value, setValue] = useState<string>("");
   const [isError, setIsError] = useState<boolean>(false);
   const [isDeadline, setIsDeadline] = useState<boolean>(false);
   const [date, setDate] = useState<string>("");
 
   const handleChangeDate = (e: ChangeEvent<HTMLInputElement>) => {
-    setDate(e.target.value);
     setIsDeadline(false);
+    setDate(e.target.value);
   };
 
   const handleClick = () => {
-    if (!inputText) {
+    if (!value) {
       setIsError(true);
+      return;
+    }
+    if (!date) {
+      setIsDeadline(true);
       return;
     }
     const newTodo: ITodo = {
       id: Math.random() * 100,
-      text: inputText,
+      text: value,
       completed: false,
+      value: date,
     };
     setTodos([...todos, newTodo]);
-    setInputText("");
+    setDate("");
+    setValue("");
     inputRef.current?.focus();
   };
 
@@ -74,40 +79,44 @@ function TodoList() {
     getLocalTodos();
   }, []);
 
-  const handleInputText = (e: ChangeEvent<HTMLInputElement>) => {
+  const handleValue = (e: ChangeEvent<HTMLInputElement>) => {
     setIsError(false);
-    setInputText(e.currentTarget.value);
+    setValue(e.currentTarget.value);
+  };
+
+  // complete
+  const handleComplete = (id: number) => {
+    setTodos(
+      todos.map((item) => {
+        if (item.id === id) {
+          return { ...item, completed: !item.completed };
+        }
+
+        return item;
+      })
+    );
+  };
+
+  // delete
+  const handleDelete = (id: number) => {
+    setTodos(todos.filter((el) => el.id !== id));
   };
 
   return (
     <>
       <div className="todo-list">
-        <Nav />
         <div className="header">
           <h1 className="todo-title"> Todo List </h1>
-          <form className="form-deadline">
-            <h2>Deadline :</h2>
-            <input
-              type="date"
-              className="todo-deadline"
-              name="deadline"
-              onChange={handleChangeDate}
-              min={"2023-07-26"}
-            />
-          </form>
-          {isDeadline && (
-            <p className="todo-deadline-error">Choose deadline to create</p>
-          )}
         </div>
         <div className="banner">
           <div className="todo-content">
             <input
               ref={inputRef}
-              value={inputText}
+              value={value}
               type="text"
               placeholder="Add todo..."
               className="todo-input"
-              onChange={handleInputText}
+              onChange={handleValue}
               maxLength={3}
             />
             <button className="todo-button" type="submit" onClick={handleClick}>
@@ -117,37 +126,46 @@ function TodoList() {
               <p className="todo-input-error">This field is required!</p>
             )}
           </div>
-          <div className="todo-select">
-            <select
-              name="status"
-              onChange={handleFilter}
-              className="select-status"
-            >
-              <option value="all">All</option>
-              <option value="complete">Complete</option>
-              <option value="uncomplete">Uncomplete</option>
-            </select>
-          </div>
+          <form className="form-deadline">
+            <h2>Deadline :</h2>
+            <input
+              type="date"
+              className="todo-deadline"
+              name="deadline"
+              value={date}
+              onChange={handleChangeDate}
+              min={"2023-07-27"}
+            />
+          </form>
+          {isDeadline && (
+            <p className="todo-deadline-error">Choose deadline to create</p>
+          )}
         </div>
       </div>
       <div className="container">
         <ul className="list">
           {todos.map((todo, index) => {
-            const { text, id, completed } = todo;
+            const { text, id, completed, value } = todo;
             return (
               <Todo
-                key={index}
                 id={id}
+                key={index}
                 text={text}
                 completed={completed}
-                todos={todos}
-                setTodos={setTodos}
-                date={date}
-                setIsDeadline={setIsDeadline}
+                handleComplete={handleComplete}
+                handleDelete={handleDelete}
+                value={value}
               />
             );
           })}
         </ul>
+      </div>
+      <div className="todo-select">
+        <select name="status" onChange={handleFilter} className="select-status">
+          <option value="all">All</option>
+          <option value="complete">Complete</option>
+          <option value="uncomplete">Uncomplete</option>
+        </select>
       </div>
     </>
   );

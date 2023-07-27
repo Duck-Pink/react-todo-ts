@@ -1,7 +1,7 @@
 .todo {
     display: flex;
-    justify-content: center;
     align-items: center;
+    width: 450px;
     margin: 0.5rem;
     background: white;
     transition: all 1s ease;
@@ -9,9 +9,20 @@
     border-radius: 10px;
 }
 
+.deadline {
+    color:red;
+    display: flex;
+    width: 450px;
+    align-items: center;
+    margin: 0.5rem;
+    background: white;
+    transition: all 1s ease;
+    border-radius: 10px;
+}
+
 .todo-item {
     padding: 8px;
-    width: 20rem;
+    width: 23.1rem;
     display: flex;
     justify-content: space-between;
 }
@@ -30,7 +41,7 @@
 
 .btn-delete {
     border-radius: 0 10px 10px 0;
-    padding: 8px;
+    padding: 10px 8px;
     font-size: 20px;
     border: none;
     background: white;
@@ -39,7 +50,7 @@
 }
 
 .btn-complete {
-    padding: 8px;
+    padding: 10px 8px;
     font-size: 20px;
     border: none;
     background: white;
@@ -52,13 +63,3 @@ button {
     cursor: pointer;
 }
 
-.deadline {
-    color:red;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin: 0.5rem;
-    background: white;
-    transition: all 1s ease;
-    border-radius: 10px;
-}
