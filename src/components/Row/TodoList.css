@@ -2,15 +2,15 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-bottom: 35px;
 }
 
 
 .container {
-  position: absolute;
-  display: flex;
-  left: 28.5%;
-  top: 33%;
-  /* background: rgba(246, 235, 218, 0.85); */
+  position: relative;
+  width: 480px;
+  left: 29%;
+  background: rgba(246, 235, 218, 0.85);
   border-radius: 10px;
 }
 
@@ -18,7 +18,7 @@
 .todo-input {
     width: 15rem;
     border-radius: 10px 0 0 10px;
-    padding: 12px;
+    padding: 10px;
     font-size: 20px;
     border: none;
     background: white;
@@ -29,7 +29,7 @@
   background-color: #ffd179;
   cursor: pointer;
   border-radius: 0 10px 10px 0;
-  padding: 12px;
+  padding: 10px;
   font-size: 20px;
   border: none;
 }
@@ -55,41 +55,25 @@
   color: #ff3e00;
 }
 
-
-  /*CUSTOM SELECTOR */
 select {
   font-size: 13px;
-  width: 9rem;
-  padding: 10px;
-  appearance: none;
+  width: 7rem;
+  padding: 8px;
   outline: 0;
   box-shadow: none;
   border: 0 !important;
   background-image: none;
   cursor: pointer;
+  border-radius: 10px;
 }
 
-/* Custom Select */
 .todo-select {
   position: absolute;
-  left: 60%;
+  left: 62%;
   top: 32%;
   margin: 1rem;
   overflow: hidden;
-  border-radius: 10px;
-  background: white;
 }
-
-/* Arrow */
-.todo-select::after {
-  position: absolute;
-  content: "\25BC";
-  top: 0;
-  right: 0;
-  padding: 8px;
-  pointer-events: none;
-}
-/* Transition */
 
 .todo-title {
   font-size: 50px;
@@ -106,7 +90,7 @@ select {
 }
 
 .form-deadline > h2 {
-    padding: 9px;
+    padding: 7px;
     background: white;
     border-radius: 10px 0 0 10px;
 }
@@ -115,7 +99,7 @@ select {
   background: white;
   font-size: 20px;
   border: none;
-  padding: 11px;
+  padding: 9px;
   border-radius: 0 10px 10px 0;
   cursor: pointer;
 }

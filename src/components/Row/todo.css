@@ -1,7 +1,6 @@
 .todo {
     display: flex;
     align-items: center;
-    width: 450px;
     margin: 0.5rem;
     background: white;
     transition: all 1s ease;
@@ -12,7 +11,6 @@
 .deadline {
     color:red;
     display: flex;
-    width: 450px;
     align-items: center;
     margin: 0.5rem;
     background: white;
@@ -21,8 +19,8 @@
 }
 
 .todo-item {
-    padding: 8px;
-    width: 23.1rem;
+    padding: 7px;
+    width: 25rem;
     display: flex;
     justify-content: space-between;
 }
@@ -62,4 +60,6 @@
 button {
     cursor: pointer;
 }
+
+
 

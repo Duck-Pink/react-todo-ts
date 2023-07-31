@@ -1,7 +1,5 @@
 import "./todo.css";
 import { CheckIcon, XmarkIcon } from "../icons";
-import dayjs from "dayjs";
-// import { MouseEventHandler } from "react";
 
 interface TodoProps {
   id: number;
@@ -29,7 +27,7 @@ function Todo({
     <div className={`${deadline === 1 ? "deadline" : "todo"}`}>
       <li key={id} className={`todo-item ${completed ? "completed" : ""}`}>
         <label>Todo: {text} </label>
-        <label>Date: {dayjs(new Date().getTime()).format("YYYY-MM-DD")}</label>
+        <label>Date: {value}</label>
         <label>Deadline: {deadline} day</label>
       </li>
       <button className="btn-complete" onClick={() => handleComplete(id)}>
