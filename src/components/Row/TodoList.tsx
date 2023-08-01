@@ -63,16 +63,9 @@ function TodoList() {
   }, []);
 
   const getLocalTodos = () => {
-    if (localStorage.getItem("todos") === null) {
-      localStorage.setItem("todos", JSON.stringify([]));
-    } else {
-      const localStorageTodos = localStorage.getItem("todos");
-      if (localStorageTodos === null) {
-        return;
-      }
-      let todoLocal = JSON.parse(localStorageTodos);
-      setTodos(todoLocal);
-    }
+    const localStorageTodos = localStorage.getItem("todos");
+    const todosLocal = localStorageTodos ? JSON.parse(localStorageTodos) : [];
+    setTodos(todosLocal);
   };
 
   useEffect(() => {
@@ -117,7 +110,7 @@ function TodoList() {
               placeholder="Add todo..."
               className="todo-input"
               onChange={handleValue}
-              maxLength={3}
+              maxLength={5}
             />
             <button className="todo-button" type="submit" onClick={handleClick}>
               +
@@ -134,13 +127,20 @@ function TodoList() {
               name="deadline"
               value={date}
               onChange={handleChangeDate}
-              min={"2023-07-27"}
+              min={"2023-08-01"}
             />
           </form>
           {isDeadline && (
             <p className="todo-deadline-error">Choose deadline to create</p>
           )}
         </div>
+      </div>
+      <div className="todo-select">
+        <select name="status" onChange={handleFilter} className="select-status">
+          <option value="all">All</option>
+          <option value="complete">Complete</option>
+          <option value="uncomplete">Uncomplete</option>
+        </select>
       </div>
       <div className="container">
         <ul className="list">
@@ -159,13 +159,6 @@ function TodoList() {
             );
           })}
         </ul>
-      </div>
-      <div className="todo-select">
-        <select name="status" onChange={handleFilter} className="select-status">
-          <option value="all">All</option>
-          <option value="complete">Complete</option>
-          <option value="uncomplete">Uncomplete</option>
-        </select>
       </div>
     </>
   );
