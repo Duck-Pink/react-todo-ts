@@ -1,10 +1,10 @@
-import { useEffect, useState } from "react";
-import "./FormUserProfile.css";
-import { SubmitHandler, useForm } from "react-hook-form";
-import { Input } from "../Input";
-import { useNavigate } from "react-router-dom";
-import userLogo from "../../assets/user.png";
-import { convertBase64 } from "../../helpers/base64";
+import { useEffect, useState } from 'react';
+import { SubmitHandler, useForm } from 'react-hook-form';
+import { Input } from '../Input';
+import { useNavigate } from 'react-router-dom';
+import userLogo from '../../assets/user.png';
+import { convertBase64 } from '../../helpers/base64';
+import clsx from 'clsx';
 
 interface UserProps {
   name: string;
@@ -14,10 +14,10 @@ interface UserProps {
 }
 
 const initalUser: UserProps = {
-  name: "Bui Quang Huong",
-  email: "buiquanghuong01@gmail.com",
+  name: 'Bui Quang Huong',
+  email: 'buiquanghuong01@gmail.com',
   phone: 999999999,
-  address: "Ha Noi",
+  address: 'Ha Noi',
 };
 
 function UserProfile() {
@@ -30,7 +30,7 @@ function UserProfile() {
     console.log(data);
 
   const saveLocalUser = () => {
-    localStorage.setItem("user", JSON.stringify(user));
+    localStorage.setItem('user', JSON.stringify(user));
   };
 
   useEffect(() => {
@@ -38,7 +38,7 @@ function UserProfile() {
   }, []);
 
   const getLocalUser = () => {
-    const localStorageUser = localStorage.getItem("user");
+    const localStorageUser = localStorage.getItem('user');
     const userLocal = localStorageUser ? JSON.parse(localStorageUser) : [];
     setUser(userLocal);
   };
@@ -63,10 +63,17 @@ function UserProfile() {
   };
 
   return (
-    <div className="user">
-      <form className="user-avatar">
-        <img className="avatar" src={img} alt="user-logo" />
-        <label htmlFor="files" className="user-button-change">
+    <div className={clsx('flex text-lg')}>
+      <form className={clsx('w-32', ' border-r border-black')}>
+        <img className={clsx('w-24 h-24 pl-2')} src={img} alt="user-logo" />
+        <label
+          htmlFor="files"
+          className={clsx(
+            'block w-[105px] mt-2 p-1 bg-[#ffd179]',
+            ' text-sm cursor-pointer rounded-lg',
+            ' hover:text-white'
+          )}
+        >
           Change Avatar
         </label>
         <Input
@@ -74,81 +81,129 @@ function UserProfile() {
           type="file"
           name="avatar"
           onChange={handleUploadImg}
-          className="user-change-avatar"
+          className={clsx('invisible')}
         />
       </form>
-      <form onSubmit={handleSubmit(onSubmit)} className="profile-details">
-        <div className="user-profile">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className={clsx('w-full pl-[20px]')}
+      >
+        <div
+          className={clsx(
+            'flex justify-between items-center bg-white',
+            'p-2 rounded-lg mb-3'
+          )}
+        >
           <label>Full Name: </label>
           <Input
-            {...register("name")}
-            className="input-name"
+            {...register('name')}
+            className={clsx('w-[80%]')}
             type="text"
             value={user.name}
             onChange={(e) => handleUser(e)}
           />
         </div>
-        <div className="user-profile">
+        <div
+          className={clsx(
+            'flex justify-between items-center bg-white',
+            'p-2 rounded-lg mb-3'
+          )}
+        >
           <label>Email: </label>
           <Input
-            {...register("email")}
-            className="input-email"
+            {...register('email')}
+            className={clsx('w-[88%]')}
             type="text"
             value={user.email}
             onChange={(e) => handleUser(e)}
           />
         </div>
-        <div className="user-profile">
+        <div
+          className={clsx(
+            'flex justify-between items-center bg-white',
+            'p-2 rounded-lg mb-3'
+          )}
+        >
           <p>Gender :</p>
           <span>
             <Input
-              className="input-radio"
+              className={clsx('mr-1')}
               type="radio"
               id="male"
-              name="sex"
+              name="gender"
               checked
             />
             <label htmlFor="male">Male</label>
           </span>
           <span>
             <Input
-              className="input-radio"
+              className={clsx('mr-1')}
               type="radio"
               id="female"
-              name="sex"
+              name="gender"
             />
             <label htmlFor="female">Female</label>
           </span>
         </div>
-        <div className="user-profile">
+        <div
+          className={clsx(
+            'flex justify-between items-center bg-white',
+            'p-2 rounded-lg mb-3'
+          )}
+        >
           <label>Birthday: </label>
-          <Input type="date" className="input-birthday" />
+          <Input type="date" className={clsx('border-none')} />
         </div>
-        <div className="user-profile">
+        <div
+          className={clsx(
+            'flex justify-between items-center bg-white',
+            'p-2 rounded-lg mb-3'
+          )}
+        >
           <label>Phone Number: </label>
           <Input
-            {...register("phone")}
-            className="input-phone"
+            {...register('phone')}
+            className={clsx('w-[72%]')}
             type="number"
             value={user.phone}
             onChange={(e) => handleUser(e)}
           />
         </div>
-        <div className="user-profile">
+        <div
+          className={clsx(
+            'flex justify-between items-center bg-white',
+            'p-2 rounded-lg mb-3'
+          )}
+        >
           <label>Address: </label>
           <Input
-            {...register("address")}
-            className="input-address"
+            {...register('address')}
+            className={clsx('w-[83%]')}
             type="text"
             value={user.address}
             onChange={(e) => handleUser(e)}
           />
         </div>
-        <div className="user-buttons">
-          <button className="user-button" type="submit" value="submit">
+        <div className={clsx('flex pt-5 justify-around')}>
+          <button
+            className={clsx(
+              'w-[100px] h-[40px] bg-[#ffd179] ',
+              'font-semibold cursor-pointer rounded-lg',
+              'hover:text-white'
+            )}
+            type="submit"
+            value="submit"
+          >
             Save
           </button>
-          <button className="user-button" onClick={() => navigate("/home")}>
+          <button
+            className={clsx(
+              'w-[100px] h-[40px] bg-[#ffd179] ',
+              'font-semibold cursor-pointer rounded-lg',
+              'hover:text-white'
+            )}
+            onClick={() => navigate('/home')}
+          >
             Go Back
           </button>
         </div>

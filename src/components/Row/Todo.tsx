@@ -1,5 +1,5 @@
-import "./todo.css";
-import { CheckIcon, XmarkIcon } from "../icons";
+import { CheckIcon, XmarkIcon } from '../icons';
+import clsx from 'clsx';
 
 interface TodoProps {
   id: number;
@@ -24,16 +24,45 @@ function Todo({
   );
 
   return (
-    <div className={`${deadline === 1 ? "deadline" : "todo"}`}>
-      <li key={id} className={`todo-item ${completed ? "completed" : ""}`}>
+    <div
+      className={`${
+        deadline === 1
+          ? 'flex items-center justify-between mb-[10px] bg-white rounded-lg text-red-600'
+          : 'flex items-center justify-between mb-[10px] bg-white rounded-lg text-black'
+      }`}
+    >
+      <li
+        key={id}
+        className={`flex justify-between w-96 p-[7px] ${
+          completed ? 'line-through opacity-[0.5]' : ''
+        }`}
+      >
         <label>Todo: {text} </label>
         <label>Date: {value}</label>
         <label>Deadline: {deadline} day</label>
       </li>
-      <button className="btn-complete" onClick={() => handleComplete(id)}>
+      <button
+        className={clsx(
+          'flex items-center',
+          ' bg-white ',
+          'text-xl px-2 py-3',
+          'cursor-pointer',
+          ' hover:bg-lime-500'
+        )}
+        onClick={() => handleComplete(id)}
+      >
         <CheckIcon />
       </button>
-      <button className="btn-delete" onClick={() => handleDelete(id)}>
+      <button
+        className={clsx(
+          'flex items-center',
+          ' bg-white text-xl ',
+          ' px-2 py-3',
+          'cursor-pointer rounded-r-lg',
+          'hover:bg-red-500'
+        )}
+        onClick={() => handleDelete(id)}
+      >
         <XmarkIcon />
       </button>
     </div>
