@@ -1,0 +1,65 @@
+.todo {
+    display: flex;
+    align-items: center;
+    margin: 0.5rem;
+    background: white;
+    transition: all 1s ease;
+    color: black;
+    border-radius: 10px;
+}
+
+.deadline {
+    color:red;
+    display: flex;
+    align-items: center;
+    margin: 0.5rem;
+    background: white;
+    transition: all 1s ease;
+    border-radius: 10px;
+}
+
+.todo-item {
+    padding: 7px;
+    width: 25rem;
+    display: flex;
+    justify-content: space-between;
+}
+.completed {
+    text-decoration: line-through;
+    opacity: 0.5;
+}
+
+.btn-complete:hover {
+    background-color: rgb(51, 242, 233);
+} 
+
+.btn-delete:hover {
+    background-color: rgb(239, 78, 78);
+}
+
+.btn-delete {
+    border-radius: 0 10px 10px 0;
+    padding: 10px 8px;
+    font-size: 20px;
+    border: none;
+    background: white;
+    display: flex;
+    align-items: center;
+}
+
+.btn-complete {
+    padding: 10px 8px;
+    font-size: 20px;
+    border: none;
+    background: white;
+    display: flex;
+    align-items: center;
+}
+
+
+button {
+    cursor: pointer;
+}
+
+
+
